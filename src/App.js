@@ -1,4 +1,6 @@
 import './App.css'
+import 'aos/dist/aos.css'
+import Aos from 'aos'
 import mockData from './data/response_Mock.json'
 import React, { useEffect, useMemo, useState } from 'react'
 import { useTable, useSortBy, useGlobalFilter } from 'react-table'
@@ -13,6 +15,10 @@ const App = () => {
   const [tableData, setTableData] = useState([])
   const [expandedRows, setExpandedRows] = useState([])
   const data = useMemo(() => tableData, [tableData])
+
+  useEffect(() => {
+    Aos.init({ duration: 1000 })
+  }, [])
 
   useEffect(() => {
     const getAllTableData = () => {
@@ -75,7 +81,7 @@ const App = () => {
   const { globalFilter } = state
 
   return (
-    <div className="App">
+    <div data-aos="zoom-in" className="App">
       <h1>Community Capital Management</h1>
       <div className="search-container">
         <input
@@ -86,7 +92,7 @@ const App = () => {
           className="search"
         />
       </div>
-      <div className="table-container">
+      <div data-aos="zoom-in" className="table-container">
         <table {...getTableProps()}>
           <thead>
             {headerGroups.map((headerGroup) => (
@@ -160,7 +166,7 @@ const App = () => {
         </table>
       </div>
       <button onClick={downloadCSV}>Download CSV</button>
-      <p>By: Jason Martinez</p>
+      <p>Applicant: Jason Martinez</p>
     </div>
   )
 }
