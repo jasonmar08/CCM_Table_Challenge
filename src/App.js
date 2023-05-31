@@ -2,7 +2,7 @@ import './App.css'
 import mockData from './data/response_Mock.json'
 import React, { useEffect, useMemo, useState } from 'react'
 import { useTable, useSortBy, useGlobalFilter } from 'react-table'
-import { downloadCSV, renderValue } from './utilities/tableFunctions'
+import { renderValue } from './utilities/tableFunctions'
 import {
   TiArrowSortedUp,
   TiArrowSortedDown,
