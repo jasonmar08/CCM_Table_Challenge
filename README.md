@@ -35,7 +35,7 @@
 
 ## Technologies Used
 
-<img style="center" src="https://i.postimg.cc/9fsrDs1d/PERN.png" alt="Pern Stack" width="1000">
+<img style="center" src="/public/assets/react_banner.png" alt="React JS" width="1000">
 
 - JavaScript
 - React.js
