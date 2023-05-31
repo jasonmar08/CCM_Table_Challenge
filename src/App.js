@@ -2,6 +2,11 @@ import './App.css'
 import tableData from './data/response_Mock.json'
 import * as React from 'react'
 import { useTable, useSortBy, useGlobalFilter } from 'react-table'
+import {
+  TiArrowSortedUp,
+  TiArrowSortedDown,
+  TiArrowUnsorted
+} from 'react-icons/ti'
 
 const renderValue = (value) => {
   if (value === null || value === '') {
@@ -76,14 +81,20 @@ const App = () => {
               <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column) => (
                   <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                    {column.render('Header')}
-                    <span>
-                      {column.isSorted
-                        ? column.isSortedDesc
-                          ? ' 🔽'
-                          : ' 🔼'
-                        : ''}
-                    </span>
+                    <div className="header-content">
+                      <span>{column.render('Header')}</span>
+                      <span>
+                        {column.isSorted ? (
+                          column.isSortedDesc ? (
+                            <TiArrowSortedDown size={20} />
+                          ) : (
+                            <TiArrowSortedUp size={20} />
+                          )
+                        ) : (
+                          <TiArrowUnsorted size={20} />
+                        )}
+                      </span>
+                    </div>
                   </th>
                 ))}
               </tr>
