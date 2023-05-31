@@ -10,7 +10,7 @@ body {
 }
 body {
   margin: 0;
-  background: -webkit-linear-gradient(45deg, #216866, #210fa4);
+  background: -webkit-linear-gradient(45deg, #5ca491, #09105a);
   background: linear-gradient(45deg, #5ca491, #09105a);
   font-family: sans-serif;
   font-weight: 100;
@@ -42,8 +42,14 @@ body {
   opacity: 1;
 }
 
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 70px;
+}
+
 .search {
-  margin-top: 75px;
   border: none;
   border-radius: 8px;
   height: 45px;
@@ -173,4 +179,23 @@ tbody td:hover:before {
 
 .expanded-container:hover::-webkit-scrollbar-thumb {
   opacity: 1;
+}
+
+button {
+  background-color: transparent;
+  color: #dbdfde;
+  background-color: transparent;
+  border: 1px solid #dbdfde;
+  border-radius: 8px;
+  font-size: 16px;
+  padding: 10px 20px;
+  margin-top: 650px;
+}
+
+button:hover {
+  color: #d2f1f0;
+  cursor: pointer;
+  border: 1px solid #d2f1f0;
+  background: -webkit-linear-gradient(45deg, #5ca2a4, #2f5189);
+  background: linear-gradient(45deg, #5ca2a4, #2f5189);
 }

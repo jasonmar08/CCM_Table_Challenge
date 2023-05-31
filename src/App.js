@@ -1,44 +1,36 @@
 import './App.css'
-import tableData from './data/response_Mock.json'
-import * as React from 'react'
+import mockData from './data/response_Mock.json'
+import React, { useEffect, useMemo, useState } from 'react'
 import { useTable, useSortBy, useGlobalFilter } from 'react-table'
+import { downloadCSV, renderValue } from './utilities/tableFunctions'
 import {
   TiArrowSortedUp,
   TiArrowSortedDown,
   TiArrowUnsorted
 } from 'react-icons/ti'
 
-const renderValue = (value) => {
-  if (value === null || value === '') {
-    return 'N/A'
-  } else if (typeof value === 'boolean') {
-    return (
-      <input
-        type="checkbox"
-        checked={value}
-        readOnly
-        className="custom-checkbox"
-      />
-    )
-  } else {
-    return value
-  }
-}
-
 const App = () => {
-  const [expandedRows, setExpandedRows] = React.useState([])
-  const data = React.useMemo(() => tableData, [])
+  const [tableData, setTableData] = useState([])
+  const [expandedRows, setExpandedRows] = useState([])
+  const data = useMemo(() => tableData, [tableData])
 
-  const dataKeys = Object.keys(data[0])
+  useEffect(() => {
+    const getAllTableData = () => {
+      setTableData(mockData)
+    }
+    getAllTableData()
+  }, [])
 
-  const mainColumns = React.useMemo(
+  const dataKeys = useMemo(() => Object.keys(data[0] || {}), [data])
+
+  const mainColumns = useMemo(
     () => dataKeys.slice(0, 10).map((key) => ({ Header: key, accessor: key })),
-    []
+    [dataKeys]
   )
 
-  const expandedColumns = React.useMemo(
+  const expandedColumns = useMemo(
     () => dataKeys.slice(10).map((key) => ({ Header: key, accessor: key })),
-    []
+    [dataKeys]
   )
 
   const toggleRowExpansion = (rowIndex) => {
@@ -49,6 +41,25 @@ const App = () => {
         return [...prevExpandedRows, rowIndex]
       }
     })
+  }
+
+  const downloadCSV = () => {
+    const csvData = [
+      dataKeys,
+      ...tableData.map((row) => dataKeys.map((key) => row[key]))
+    ]
+
+    const csvContent = `data:text/csv;charset=utf-8,${csvData
+      .map((row) => row.join(','))
+      .join('\n')}`
+
+    const encodedUri = encodeURI(csvContent)
+    const link = document.createElement('a')
+    link.setAttribute('href', encodedUri)
+    link.setAttribute('download', 'data.csv')
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
   }
 
   const {
@@ -65,7 +76,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <div>
+      <div className="search-container">
         <input
           type="text"
           value={globalFilter || ''}
@@ -147,6 +158,7 @@ const App = () => {
           </tbody>
         </table>
       </div>
+      <button onClick={downloadCSV}>Download CSV</button>
     </div>
   )
 }
