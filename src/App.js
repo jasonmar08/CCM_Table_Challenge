@@ -76,6 +76,7 @@ const App = () => {
 
   return (
     <div className="App">
+      <h1>Community Capital Management</h1>
       <div className="search-container">
         <input
           type="text"
@@ -159,6 +160,7 @@ const App = () => {
         </table>
       </div>
       <button onClick={downloadCSV}>Download CSV</button>
+      <p>By: Jason Martinez</p>
     </div>
   )
 }

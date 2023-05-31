@@ -2,27 +2,32 @@ body {
   margin: 0;
   padding: 0;
   text-align: center;
-}
-
-html,
-body {
-  /* height: 100%; */
+  background: -webkit-linear-gradient(45deg, #5ca491, #09105a);
+  background: linear-gradient(45deg, #5ca491, #09105a);
+  font-weight: 100;
+  min-height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .App {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 80px;
+  /* margin-top: 80px; */
   row-gap: 25px;
   height: 100vh;
 }
 
-body {
-  background: -webkit-linear-gradient(45deg, #5ca491, #09105a);
-  background: linear-gradient(45deg, #5ca491, #09105a);
-  font-weight: 100;
+h1 {
+  color: rgb(212, 235, 240);
 }
+
+p {
+  color: #feffdb;
+}
+
 .table-container {
   max-height: 510px;
   overflow-y: scroll;
