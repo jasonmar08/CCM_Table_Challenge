@@ -182,9 +182,8 @@ tbody td:hover:before {
 }
 
 button {
-  background-color: transparent;
+  background: transparent;
   color: #dbdfde;
-  background-color: transparent;
   border: 1px solid #dbdfde;
   border-radius: 8px;
   font-size: 16px;
